@@ -1,0 +1,6 @@
+numpy>=1.14.0
+torch<=1.8.1
+gym[mujoco]==0.10.5
+scipy
+wandb
+Cython==3.0.0a10

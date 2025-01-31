@@ -1,0 +1,22 @@
+from setuptools import setup
+
+setup(name='diffsim',
+      version='1.0',
+      install_requires=['gym==0.15.7',
+                        'scikit-learn',
+                        'torch==1.13.1',
+                        'numpy',
+                        'matplotlib',
+                        'scipy',
+                        'bayesian-optimization',
+                        'box2d',
+                        'box2d-kengz',
+                        'mujoco_py',
+                        'lxml',
+                        'tqdm',
+                        # 'git+https://github.com/fgolemo/gym-ergojr.git',
+                        'wandb',
+                        # 'baselines',
+                        ],
+      py_modules=['common', 'experiments'],
+      )
