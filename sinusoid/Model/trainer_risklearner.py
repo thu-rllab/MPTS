@@ -10,13 +10,11 @@ class RiskLearnerTrainer():
     Class to handle training of RiskLearner for functions.
     """
 
-    def __init__(self, sampling_strategy, device, risklearner, optimizer, real_batch_size):
-        self.sampling_strategy = sampling_strategy
+    def __init__(self, device, risklearner, optimizer):
 
         self.device = device
         self.risklearner = risklearner
         self.optimizer = optimizer
-        self.real_batch_size = real_batch_size
 
         # ++++++Prediction distribution p(l|tau)++++++++++++++++++++++++++++
         self.output_type = "deterministic"
@@ -30,7 +28,6 @@ class RiskLearnerTrainer():
         self.last_risk_y = None
 
         # ++++++Acquisition functions++++++++++++++++++++++++++++
-        self.acquisition_type = "upper_confidence_bound"
         self.num_samples = 20
 
     def train(self, Risk_X, Risk_Y):

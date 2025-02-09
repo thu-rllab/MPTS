@@ -93,9 +93,10 @@ class Decoder(nn.Module):
             mu = mu.view(num_repeat, num_points, self.y_dim)
 
             if output_type == "probabilistic":
-                pre_sigma = pre_sigma.view(batch_size, num_points, self.y_dim)
+                pre_sigma = pre_sigma.view(num_repeat, num_points, self.y_dim)
                 sigma = 0.1 + 0.9 * F.softplus(pre_sigma)
-                p_y_pred = Normal(y_pred_mu, y_pred_sigma)
+                p_y_pred = Normal(mu, sigma)
+                p_y_pred = p_y_pred.rsample([1])[0]
             else:
                 p_y_pred = mu
 

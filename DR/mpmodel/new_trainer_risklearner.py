@@ -33,11 +33,7 @@ class RiskLearnerTrainer():
         self.last_risk_y = None
 
         # ++++++Acquisition functions++++++++++++++++++++++++++++
-        self.acquisition_type = "lower_confidence_bound"
-        if not self.posterior_sampling:
-            self.num_samples = 50
-        else:
-            self.num_samples = 1
+        self.num_samples = 50
 
     def train(self, Risk_X, Risk_Y):
         Risk_X, Risk_Y = Risk_X.unsqueeze(0), Risk_Y.unsqueeze(0).unsqueeze(-1)

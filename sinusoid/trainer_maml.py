@@ -33,7 +33,7 @@ class SineMAML():
         self.risklearner_lr = config["risklearner_lr"]
         risklearner_optimizer = torch.optim.Adam(self.risklearner.parameters(), lr=self.risklearner_lr)
         if "mpts" in self.sampling_strategy:
-            self.risklearner_trainer = RiskLearnerTrainer(self.sampling_strategy, self.device, self.risklearner, risklearner_optimizer, self.num_metatasks)
+            self.risklearner_trainer = RiskLearnerTrainer(self.device, self.risklearner, risklearner_optimizer)
 
         self.gamma_mu = config["gamma_mu"]
         self.gamma_sigma = config["gamma_sigma"]
