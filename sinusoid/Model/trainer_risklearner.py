@@ -69,7 +69,6 @@ class RiskLearnerTrainer():
 
         Risk_X_candidate = Risk_X_candidate.to(self.device)
         x = Risk_X_candidate.unsqueeze(0)
-        # Shape: 1 * 100 * 2
         
         if self.last_risk_x is None:
             z_sample = self.z_prior.rsample([self.num_samples])

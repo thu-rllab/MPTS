@@ -102,7 +102,6 @@ os.system("mkdir -p " + config["log_name"]+"/checkpoint")
 config["plot_every"] = 100
 config["print_every"] = 100
 config["test_every"] = 500
-# config["num_epochs"] = 1000
 config["num_epochs"] = 20000
 log_string(config["file_out"], str(config))
 

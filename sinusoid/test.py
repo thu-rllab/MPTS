@@ -44,9 +44,7 @@ def single_task_test(config, og_net, x, y, axis, task):
     outputs["gt"] = task.true_sine(axis.cpu().clone().numpy())
 
     meta_losses = criterion(torch.tensor(outputs["adapted"]), torch.tensor(outputs["gt"]).unsqueeze(1))
-    #     if meta_losses > 100:
-    #         print(losses)
-    #         pdb.set_trace()
+
     return outputs, meta_losses
 
 def test(config, epoch, tasks, og_net):
@@ -64,9 +62,6 @@ def test(config, epoch, tasks, og_net):
 
     # Generating test task discriptors
     test_amp_list, test_phase_list = tasks.task_descriptor_candidate(num_test_tasks)
-    # print("Here is the test candidate amp" )
-    # print(test_amp_list[:10])
-    # pdb.set_trace()
 
     # Testing
     for i in range(num_test_tasks):
@@ -82,12 +77,6 @@ def test(config, epoch, tasks, og_net):
 
         outputs, meta_losses = single_task_test(config, og_net, x, y, axis, test_task)
         test_MSE_all.append(meta_losses)
-    #         if i==49:
-    #             plot_test(x, outputs, axis)
-    #             print("Here is the meta_loss of the curren task {} at the {} epoch".format(meta_losses, epoch))
-    #         if i in {1, 2}:
-    #             print(x)
-    #     print(test_amp_list[:10])
 
     test_MSE_all = torch.Tensor(test_MSE_all)
     # pdb.set_trace()
@@ -97,7 +86,6 @@ def test(config, epoch, tasks, og_net):
     for cvar_alpha in [0.1, 0.3, 0.5, 0.7, 0.9]:
         test_cvar = torch.tensor(calcu_cvar(test_MSE_all, cvar_alpha))
         test_cvar_list.append(test_cvar)
-    # np.random.seed()  # ！！！ very important to release the fixed seed for training.
     np.random.seed(config["global_seed"])
     return test_score, test_score_std, test_cvar_list
 

@@ -52,9 +52,6 @@ class RiskLearner(nn.Module):
         Process Objectives" where context is a subset of target points. This was
         shown to work best empirically.
         """
-        # Infer quantities from tensor dimensions
-        batch_size, num, x_dim = x.size()
-        _, _, y_dim = y.size()
 
         if self.training:
 
