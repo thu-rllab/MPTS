@@ -179,7 +179,7 @@ def cvar_evaluate_policy(nagents, env, agent_policy, replay_buffer, eval_episode
         return np.array(ep_rewards).flatten(), np.array(final_dists).flatten()
 
     trajectories = []
-    for i in range(int(cvar*nagents)):
+    for i in range(int((1-cvar)*nagents)):
         trajectories.append(np.concatenate(
             [
                 np.array(cvar_states[i]),
