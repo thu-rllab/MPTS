@@ -300,15 +300,15 @@ def main(args):
 
             inner_returns = - inner_returns[:,:,-1]#n_tasks, n_traj
             return_norm=loss_norm=1.0
-            if not args.batch_norm:
-                return_norm = 300.0 if not args.use_last_r else 1.0
-                loss_norm = 0.01
-            if args.use_inner_loss:
-                y = torch.tensor(after_inner_losses).to(device)/loss_norm
-            else:
-                y = inner_returns.to(device)/return_norm
-            if args.batch_norm:
-                y = (y - y.mean()) / (y.std() + 1e-8)
+            # if not args.batch_norm:
+            #     return_norm = 300.0 if not args.use_last_r else 1.0
+            #     loss_norm = 0.01
+            # if args.use_inner_loss:
+            #     y = torch.tensor(after_inner_losses).to(device)/loss_norm
+            # else:
+            y = inner_returns.to(device)/return_norm
+            # if args.batch_norm:
+            y = (y - y.mean()) / (y.std() + 1e-8)
                 
             for _ in range(args.sampler_train_times):
                 sampler_loss, recon_loss, kl_loss = sampler.train(tasks, y)
@@ -353,9 +353,9 @@ def main(args):
                                                                   i_iter,
                                                                   n_tasks=args.eval_meta_batch_size)
             init_multi_steps_reward.append(eval_init_returns)
-            init_multi_steps_cvar_reward_10.append(eval_init_cvar_returns[0])
-            init_multi_steps_cvar_reward_30.append(eval_init_cvar_returns[1])
-            init_multi_steps_cvar_reward_50.append(eval_init_cvar_returns[2])
+            # init_multi_steps_cvar_reward_10.append(eval_init_cvar_returns[0])
+            # init_multi_steps_cvar_reward_30.append(eval_init_cvar_returns[1])
+            # init_multi_steps_cvar_reward_50.append(eval_init_cvar_returns[2])
             init_multi_steps1_cvar_reward_5.append(eval_init_cvar_returns_step1[3])
             init_multi_steps1_cvar_reward_10.append(eval_init_cvar_returns_step1[0])
             init_multi_steps1_cvar_reward_30.append(eval_init_cvar_returns_step1[1])
@@ -372,9 +372,9 @@ def main(args):
                                 'init_cvar_after_reward_30': init_cvar_after_reward_30[-1],
                                 'init_cvar_after_reward_50': init_cvar_after_reward_50[-1],
                         
-                            'init_multi_steps_cvar_reward_10': init_multi_steps_cvar_reward_10[-1],
-                            'init_multi_steps_cvar_reward_30': init_multi_steps_cvar_reward_30[-1],
-                            'init_multi_steps_cvar_reward_50': init_multi_steps_cvar_reward_50[-1],
+                            # 'init_multi_steps_cvar_reward_10': init_multi_steps_cvar_reward_10[-1],
+                            # 'init_multi_steps_cvar_reward_30': init_multi_steps_cvar_reward_30[-1],
+                            # 'init_multi_steps_cvar_reward_50': init_multi_steps_cvar_reward_50[-1],
                             'init_multi_steps1_cvar_reward_5': init_multi_steps1_cvar_reward_5[-1],
                             'init_multi_steps1_cvar_reward_10': init_multi_steps1_cvar_reward_10[-1],
                                 'init_multi_steps1_cvar_reward_30': init_multi_steps1_cvar_reward_30[-1],

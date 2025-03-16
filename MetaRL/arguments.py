@@ -18,11 +18,11 @@ def parse_args():
     parser.add_argument('--meta_testing_epoch', type=int, default=500)
     parser.add_argument('--add_random', default=False, action='store_true')
 
-    parser.add_argument('--use_inner_loss', default=False, action='store_true')
+    # parser.add_argument('--use_inner_loss', default=False, action='store_true')
     parser.add_argument('--use_last_r', default=True, action='store_true')
-    parser.add_argument('--baseline_use_last_r', default=False, action='store_true')
+    # parser.add_argument('--baseline_use_last_r', default=False, action='store_true')
 
-    parser.add_argument('--batch_norm', default=True, action='store_false')
+    # parser.add_argument('--batch_norm', default=True, action='store_false')
     parser.add_argument('--sampler_lr', default=0.005, type=float)
     parser.add_argument('--sampler_train_times', default=10, type=int)
     parser.add_argument('--warmup', type=int, default=50)
